@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import DrinkCard from '../components/drink-card';
 //https://www.thecocktaildb.com/api.php
-const Home = ({
-    ...props
-}) =>{
+const Home = () =>{
     const [showIngredients, setShowIngredients] = useState(false);
     const [currentDrink, setCurrentDrink] = useState(false);
     const [drinks, setDrinks] = useState([]);
@@ -13,15 +12,7 @@ const Home = ({
         .then(response => response.json())
         .then(data=>{setDrinks(data.drinks);});  
     }
-    function addDrink(drink){ 
-        let myDrinks = [];
-        let storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
-        if(storedDrinks){
-            myDrinks = storedDrinks;
-        }
-        myDrinks.push(drink);
-        localStorage.setItem('myDrinks',JSON.stringify(myDrinks));  
-    }
+    
     function showDetails(drinkId){
         //todo show ingredients for drink
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
@@ -55,10 +46,7 @@ const Home = ({
                 drinks.map(item=>{
                   return( 
                     <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item.idDrink}>
-                        <img width="200px" height="200px"src={item.strDrinkThumb} alt={`image of ${item.strDrink}`}/>
-                        <h4>{item.strDrink}</h4>
-                        <button onClick={()=>{addDrink(item);}}>Add to my drinks</button>
-                        <button onClick={()=>{showDetails(item.idDrink);}}>Show details</button>
+                      <DrinkCard item={item} emitEvent={showDetails}/>
                     </div>
                   );
                 })

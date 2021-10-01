@@ -1,7 +1,5 @@
 
-const MyDrinks = ({
-    ...props
-}) =>{
+const MyDrinks = () =>{
     return(
         'my drinks'
     );

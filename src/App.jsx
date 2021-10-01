@@ -5,13 +5,17 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
+import Navigation from "./components/navigation/navigation";
 
 const Home = lazy(() => import('./views/home'));
 const MyDrinks = lazy(() => import('./views/my-drinks'));
 
 export const App = () =>{
   return(
+    <>
+   
     <Router>   
+      <Navigation/>
       <Suspense fallback={"loading..."}>
         <Switch>
             <Route path={"/my-drinks"} component={MyDrinks}/>
@@ -19,6 +23,7 @@ export const App = () =>{
         </Switch>   
       </Suspense>
     </Router>
+    </>
   );
 };
 
