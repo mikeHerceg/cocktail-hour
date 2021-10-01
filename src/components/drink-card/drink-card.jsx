@@ -1,7 +1,6 @@
 // Generated with util/create-component.js
 
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types"; 
 import styles from "./drink-card.module.scss";
 
 
@@ -9,13 +8,15 @@ const DrinkCard = ({
   item,
   emitEvent
 }) => {
-  
+  const [isMyDrinks, setMyDrinks] = useState();
+
   function addDrink(drink){ 
     let myDrinks = [];
     let storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
     if(storedDrinks){
         myDrinks = storedDrinks;
     }
+    setMyDrinks(true);
     myDrinks.push(drink);
     localStorage.setItem('myDrinks',JSON.stringify(myDrinks));  
   }
@@ -29,10 +30,10 @@ const DrinkCard = ({
     myDrinks = myDrinks.filter(drink=>{
       return drink['idDrink'] !== drinkId;
     });
-    console.log(myDrinks);
+    setMyDrinks(false);
     localStorage.setItem('myDrinks',JSON.stringify(myDrinks));  
   }
-  const [isMyDrinks, setMyDrinks] = useState(false);
+  
 
   function checkMyDrinks(drinkId){
     const myDrinks = JSON.parse(localStorage.getItem('myDrinks'));
@@ -41,16 +42,11 @@ const DrinkCard = ({
         setMyDrinks(true);
       }
     });
-    
-   
   }
-
   useEffect(()=>{
     checkMyDrinks(item.idDrink);
   },[]);
   
-
-
   return (
     <div data-testid="drink-card" className={styles['drink-card']} key={item.idDrink}>
      
@@ -69,10 +65,3 @@ const DrinkCard = ({
 };
 
 export default DrinkCard;
-
-DrinkCard.propTypes = {
-  //add Proptypes here
-};
-DrinkCard.defaultProps = {
-  //add defualt values
-};

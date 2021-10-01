@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import DrinkCard from '../components/drink-card';
 //https://www.thecocktaildb.com/api.php
 const Home = () =>{
@@ -11,13 +11,14 @@ const Home = () =>{
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${liquor}`)
         .then(response => response.json())
         .then(data=>{setDrinks(data.drinks);});  
+        setShowIngredients(false);
     }
     
     function showDetails(drinkId){
         //todo show ingredients for drink
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
         .then(response => response.json())
-        .then(data=>{console.log(data.drinks[0]),setCurrentDrink(data.drinks[0]);});  
+        .then(data=>{setCurrentDrink(data.drinks[0]);});  
         setShowIngredients(true);
     }
 

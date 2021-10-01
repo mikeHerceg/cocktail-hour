@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Link } from 'react-router-dom';
-import PropTypes from "prop-types"; 
 import styles from "./navigation.module.scss";
 
 
@@ -26,10 +25,3 @@ const Navigation = () => {
 };
 
 export default Navigation;
-
-Navigation.propTypes = {
-  //add Proptypes here
-};
-Navigation.defaultProps = {
-  //add defualt values
-};
