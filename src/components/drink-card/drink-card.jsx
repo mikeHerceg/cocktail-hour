@@ -1,6 +1,6 @@
 // Generated with util/create-component.js
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import styles from "./drink-card.module.scss";
 
 
@@ -10,9 +10,14 @@ const DrinkCard = ({
 }) => {
   const [isMyDrinks, setMyDrinks] = useState();
 
+  const storedDrinks = useMemo(()=>{
+    const storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
+    if( !storedDrinks) return [];
+    return storedDrinks;
+  },[localStorage.getItem('myDrinks')]);
+
   function addDrink(drink){ 
     let myDrinks = [];
-    let storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
     if(storedDrinks){
         myDrinks = storedDrinks;
     }
@@ -22,7 +27,6 @@ const DrinkCard = ({
   }
   function removeDrink(drink){ 
     let myDrinks = [];
-    let storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
     if(storedDrinks){
         myDrinks = storedDrinks;
     }
@@ -36,7 +40,7 @@ const DrinkCard = ({
   
 
   function checkMyDrinks(drinkId){
-    const myDrinks = JSON.parse(localStorage.getItem('myDrinks'));
+    const myDrinks = storedDrinks;
     myDrinks.map(drink=>{
       if(drink['idDrink'] === drinkId ){
         setMyDrinks(true);
