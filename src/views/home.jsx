@@ -20,11 +20,43 @@ const Home = () =>{
         .then(response => response.json())
         .then(data=>{setCurrentDrink(data.drinks[0]);});  
         setShowIngredients(true);
+        
     }
 
     useEffect(()=>{
         getDrinks(liquorChoice);
     },[liquorChoice]);
+//look for strIngredient, strMeasure
+function findValueByPrefix(object, prefix) {
+    const array = new Array;
+    for (var property in object) {
+      if (object.hasOwnProperty && 
+         property.toString().startsWith(prefix)) {
+          array.push(object[property]);
+      }
+    }
+    return array.filter(item => 
+        item !== null | undefined | ''
+    );
+  }
+
+  function buildIngredientList(){
+    const ingredients = findValueByPrefix(currentDrink, 'strIngredient');
+    const amounts = findValueByPrefix(currentDrink, 'strMeasure');
+    if (ingredients.length !== amounts.length) return ingredients;
+    return ingredients.map((ingredient, index)=>{
+        return amounts[index]+ ' '+ingredient;
+    });
+  }
+    
+    const [currentDrinkIngredients, setCurrentDrinkIngredients ] = useState([]);
+    
+    useEffect(()=>{
+        //console.log(buildIngredientList());
+        setCurrentDrinkIngredients(
+            buildIngredientList()
+        );
+    },[currentDrink]);
 
 
     return(
@@ -60,17 +92,16 @@ const Home = () =>{
                 <h1>{currentDrink.strDrink}</h1>
                 <img width="100px" height="100px"src={currentDrink.strDrinkThumb} alt={`image of ${currentDrink.strDrink}`}/>
                 <p><b>Glass Type:</b> {currentDrink.strGlass}</p>
-                <p><b>Ingredients:</b> 
+                <p><b>Ingredients:</b></p> 
                 <ul>
-                    <li>{currentDrink.strIngredient1}</li>
-                    <li>{currentDrink.strIngredient2}</li>
-                    <li>{currentDrink.strIngredient3}</li>
-                    <li>{currentDrink.strIngredient4}</li>
-                    <li>{currentDrink.strIngredient5}</li>
-                    <li>{currentDrink.strIngredient6}</li>
-                    <li>...</li>
+                    {
+                        currentDrinkIngredients.map(ingredient =>{
+                            if(!ingredient || ingredient === ' ') return null;
+                            return <li key={ingredient}>{ingredient}</li>;
+                        })
+                    }
                 </ul>
-                </p>
+
                 <p><b>Instructions:</b> {currentDrink.strInstructions}</p>
             </div>
         :null
