@@ -1,13 +1,22 @@
 // Generated with util/create-component.js
 
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import styles from "./navigation.module.scss";
 
 
 const Navigation = () => {
+  
+  const navRef = useRef();
+  const navSpacerRef = useRef();
+  
+  useEffect(()=>{
+    navSpacerRef.current.style=`height: ${navRef.current.clientHeight+40}px;`;
+  },[navRef] );
+
   return (
-    <div data-testid="navigation" className={styles['navigation']}>
+    <>
+    <div ref={navRef} data-testid="navigation" className={styles['navigation']}>
       <ul>
         <li>
           <Link to="/">
@@ -21,6 +30,8 @@ const Navigation = () => {
         </li>
       </ul>
     </div>
+    <div ref={navSpacerRef} className="navigation-spacer"></div>
+    </>
   ); 
 };
 
