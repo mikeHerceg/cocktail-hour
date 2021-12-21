@@ -1,2 +1,34 @@
 // Generated with util/create-component.js
 
+.toggle-button{
+    height:40px;
+    width:100px;
+    position:relative;
+    &.on{ 
+        --button-position:0;
+        --background-color:gray;
+    }
+    &.off{
+        --button-position:calc(100% - 60px);
+        --background-color:white;
+
+    }
+    .background{
+        border:#666 1px solid;
+        position: absolute;
+        background:var(--background-color);
+        height: 100%;
+        width: 80px;
+        border-radius: 50px;
+    }
+    .button{
+        transition:var(--transition);
+        position: absolute;
+        width: 40px;
+        height:40px;
+        border-radius: 50%;
+        left:var(--button-position);
+        background: white;
+        box-shadow:var(--shadow);
+    }
+}

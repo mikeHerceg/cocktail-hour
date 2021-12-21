@@ -3,6 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import styles from "./navigation.module.scss";
+import ToggleButton from "../toggle-button/toggle-button";
 
 
 const Navigation = () => {
@@ -29,6 +30,7 @@ const Navigation = () => {
           </Link>
         </li>
       </ul>
+      <ToggleButton defualtValue={false}/>
     </div>
     <div ref={navSpacerRef} className="navigation-spacer"></div>
     </>
