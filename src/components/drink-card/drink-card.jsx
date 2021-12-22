@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from "react";
 import styles from "./drink-card.module.scss";
-
+import Button from "../button";
 
 const DrinkCard = ({ 
   item,
@@ -56,14 +56,15 @@ const DrinkCard = ({
      
         <img width="200px" height="200px"src={item.strDrinkThumb} alt={`image of ${item.strDrink}`}/>
         <h4>{item.strDrink}</h4>
-        {
-          isMyDrinks ?
-            <button onClick={()=>{removeDrink(item);}}> Remove from my drinks</button>
-          :
-            <button onClick={()=>{addDrink(item);}}>Add to my drinks</button>
-        }
-        <button onClick={()=>{emitEvent(item.idDrink);}}>Show details</button>
-   
+        <div className={styles['button-group']}>  
+          {
+            isMyDrinks ?
+              <Button onClick={()=>{removeDrink(item);}}> Remove from my drinks</Button>
+            :
+              <Button onClick={()=>{addDrink(item);}}>Add to my drinks</Button>
+          }
+          <Button onClick={()=>{emitEvent(item.idDrink);}}>Show details</Button>
+        </div>
     </div>
   ); 
 };

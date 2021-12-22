@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import DrinkCard from '../components/drink-card';
+import Button from '../components/button';
 //https://www.thecocktaildb.com/api.php
 const Home = () =>{
     const [showIngredients, setShowIngredients] = useState(false);
     const [currentDrink, setCurrentDrink] = useState(false);
     const [drinks, setDrinks] = useState([]);
-    const [liquorChoice, setLiquorChoice] = useState('l');
+    const [liquorChoice, setLiquorChoice] = useState('vodka');
     
     function getDrinks(liquor){
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${liquor}`)
@@ -88,7 +89,7 @@ function findValueByPrefix(object, prefix) {
         </div>
         {showIngredients ?
             <div className="sidebar-info">
-                <button onClick={()=>setShowIngredients(!showIngredients)}>X</button>
+                <Button onClick={()=>setShowIngredients(!showIngredients)}>X</Button>
                 <h1>{currentDrink.strDrink}</h1>
                 <img width="100px" height="100px"src={currentDrink.strDrinkThumb} alt={`image of ${currentDrink.strDrink}`}/>
                 <p><b>Glass Type:</b> {currentDrink.strGlass}</p>

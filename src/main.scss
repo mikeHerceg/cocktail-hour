@@ -2,7 +2,9 @@
 
 body{
     --white:#fff;
+    --gray:#666;
     --shadow:0px 0px 15px 5px rgba(0,0,0,0.21);
+    --shadow-small:0px 0px 5px 4px rgba(0,0,0,0.21);    
     --spacer:8px;
     --transition:cubic-bezier(.57,.21,.69,1.25) all .2s;
 }

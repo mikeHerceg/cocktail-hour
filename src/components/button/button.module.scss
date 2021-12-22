@@ -1,2 +1,24 @@
 // Generated with util/create-component.js
 
+.button{
+    --button-color::var(--primary);
+    background:var(--button-color);
+    outline:none;
+    border:none;
+    padding:var(--spacer);
+    box-shadow: var(--shadow);
+    border-radius:50px;
+    border:2px solid var(--button-color);
+    transition:var(--transition);
+    margin:var(--spacer);
+    &:hover{
+        box-shadow: var(--shadow-small);
+        transition:var(--transition);
+    }
+    &:first-of-type{
+        margin-left:0;
+    }
+    &:last-of-type{
+        margin-right:0;
+    }
+}

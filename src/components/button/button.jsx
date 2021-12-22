@@ -1,25 +1,25 @@
 // Generated with util/create-component.js
 
-import React from "react";
-import PropTypes from "prop-types"; 
+import React from "react"; 
 import styles from "./button.module.scss";
 
 
 const Button = ({ 
+  onClick,
+  className,
   ...props
 }) => {
+
   return (
-    <div data-testid="button" className={styles['button']}>
-      //add component render here
-    </div>
-  ) 
+    <button 
+      data-testid="button" 
+      className={styles['button']}
+      onClick={onClick}
+      >
+        { props.children }
+    </button>
+  ); 
 };
 
 export default Button;
 
-Button.propTypes = {
-  //add Proptypes here
-}
-Button.defaultProps = {
-  //add defualt values
-}
