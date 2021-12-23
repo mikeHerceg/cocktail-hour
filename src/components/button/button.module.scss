@@ -1,8 +1,8 @@
 // Generated with util/create-component.js
 
 .button{
-    --button-color::var(--primary);
-    background:var(--button-color);
+    background:var(--button-background-color);
+    color:var(--button-text-color);
     outline:none;
     border:none;
     padding:var(--spacer);

@@ -6,17 +6,18 @@ import styles from "./toggle-button.module.scss";
 
 
 const ToggleButton = ({ 
-  defualtValue,
+  value,
+  onClick,
   ...props
 }) => {
 
-  const [isTrue, setIsTrue] = useState(defualtValue);
+  const [isTrue, setIsTrue] = useState(value);
 
   return (
     <div 
       data-testid="toggle-button" 
       className={[styles['toggle-button'], isTrue?styles.on:styles.off].join(' ')}
-      onClick={()=>setIsTrue(!isTrue)}
+      onClick={()=>{setIsTrue(!isTrue),onClick();}}
     >
       <span className={styles.background}></span>
       <span className={styles.button}></span>

@@ -4,9 +4,9 @@
     position: fixed;
     width: 100%;
     display:flex;
+    background-color: var(--background-color);
     justify-content: space-between;
     align-items: center;
-    background:var(--white);
     box-shadow: var(--shadow);
     margin-bottom:calc(var(--spacer)*10);
     padding:calc(2 * var(--spacer));
