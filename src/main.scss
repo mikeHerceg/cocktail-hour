@@ -86,6 +86,8 @@
     
     --transition:cubic-bezier(.57,.21,.69,1.25) all .15s;
 
+    --rounded-border:40px;
+    --rounded-border-small:15px;
 //styles
     transition: var(--transition);
     background:var(--background-color);

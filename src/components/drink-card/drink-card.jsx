@@ -53,8 +53,7 @@ const DrinkCard = ({
   
   return (
     <div data-testid="drink-card" className={styles['drink-card']} key={item.idDrink}>
-     
-        <img width="200px" height="200px"src={item.strDrinkThumb} alt={`image of ${item.strDrink}`}/>
+        <img src={item.strDrinkThumb} alt={`image of ${item.strDrink}`}/>
         <h4>{item.strDrink}</h4>
         <div className={styles['button-group']}>  
           {

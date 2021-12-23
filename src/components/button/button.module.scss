@@ -5,9 +5,9 @@
     color:var(--button-text-color);
     outline:none;
     border:none;
-    padding:var(--spacer);
+    padding:var(--spacer) calc(var(--spacer)*2);
     box-shadow: var(--shadow);
-    border-radius:50px;
+    border-radius:var(--rounded-border);
     border:2px solid var(--button-color);
     transition:var(--transition);
     margin:var(--spacer);

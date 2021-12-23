@@ -1,2 +1,10 @@
 // Generated with util/create-component.js
 
+.drink-card{
+    padding:var(--spacer-medium);
+    img{
+       width:100%;
+       border-radius:var(--rounded-border-small);
+       margin-bottom:var(--spacer-medium);
+    }
+}

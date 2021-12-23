@@ -1,16 +1,19 @@
 // Generated with util/create-component.js
 
 .toggle-button{
-    height:40px;
-    width:100px;
+    --toggle-height:24px;
+    --toggle-width:40px;
+
+    height:var(--toggle-height);
+    width:var(--toggle-width);
     position:relative;
     &.on{ 
         --button-position:0;
-        --background-color:gray;
+        --background-color:var(--tint3);
     }
     &.off{
-        --button-position:calc(100% - 60px);
-        --background-color:white;
+        --button-position:calc( 50% );
+        --background-color:var(--tint6);
 
     }
     .background{
@@ -18,14 +21,14 @@
         position: absolute;
         background:var(--background-color);
         height: 100%;
-        width: 80px;
+        width: var(--toggle-width);
         border-radius: 50px;
     }
     .button{
         transition:var(--transition);
         position: absolute;
-        width: 40px;
-        height:40px;
+        width: var(--toggle-height);
+        height:var(--toggle-height);
         border-radius: 50%;
         left:var(--button-position);
         background: white;
