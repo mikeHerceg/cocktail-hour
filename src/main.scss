@@ -81,12 +81,13 @@
     --shadow-large:0px 0px 15px 5px rgba(0,0,0,0.21);
     
     --spacer:8px;
-    --spacer-medium:calc(3 * var(--spacer))
-    --spacer-large:calc(5 * var(--spacer))
+    --spacer-medium:calc(3 * var(--spacer));
+    --spacer-large:calc(5 * var(--spacer));
     
-    --transition:cubic-bezier(.57,.21,.69,1.25) all .2s;
+    --transition:cubic-bezier(.57,.21,.69,1.25) all .15s;
 
 //styles
+    transition: var(--transition);
     background:var(--background-color);
     h1,h2,h3,h4,h5, p, label{
         color:var(--text-color) !important;
