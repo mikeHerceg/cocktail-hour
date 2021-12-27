@@ -8,4 +8,9 @@
        margin-bottom:var(--spacer-medium);
        border:2px solid var(--tint5)
     }
+    .button-group{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start
+    }
 }

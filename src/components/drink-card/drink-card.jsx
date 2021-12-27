@@ -58,9 +58,9 @@ const DrinkCard = ({
         <div className={styles['button-group']}>  
           {
             isMyDrinks ?
-              <Button onClick={()=>{removeDrink(item);}}> Remove from my drinks</Button>
+              <Button onClick={()=>{removeDrink(item);}}>Saved</Button>
             :
-              <Button onClick={()=>{addDrink(item);}}>Add to my drinks</Button>
+              <Button onClick={()=>{addDrink(item);}}>Save</Button>
           }
           <Button onClick={()=>{emitEvent(item.idDrink);}}>Show details</Button>
         </div>

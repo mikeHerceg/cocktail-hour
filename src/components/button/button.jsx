@@ -16,7 +16,7 @@ const Button = ({
       className={styles['button']}
       onClick={onClick}
       >
-        { props.children }
+        { props.children } 
     </button>
   ); 
 };

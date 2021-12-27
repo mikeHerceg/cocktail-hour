@@ -91,7 +91,7 @@
 //styles
     transition: var(--transition);
     background:var(--background-color);
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     position: relative;
     color:var(--text-color) !important;

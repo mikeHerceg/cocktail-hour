@@ -10,15 +10,10 @@
     border-radius:var(--rounded-border);
     border:2px solid var(--button-color);
     transition:var(--transition);
-    margin:var(--spacer);
+    margin:var(--spacer) 0;
+    display: flex;
     &:hover{
         box-shadow: var(--shadow-small);
         transition:var(--transition);
-    }
-    &:first-of-type{
-        margin-left:0;
-    }
-    &:last-of-type{
-        margin-right:0;
     }
 }
