@@ -91,9 +91,10 @@
 //styles
     transition: var(--transition);
     background:var(--background-color);
-    h1,h2,h3,h4,h5, p, label{
-        color:var(--text-color) !important;
-    }
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    color:var(--text-color) !important;
     a, a:visited{
         color:var(--primary);
         &:hover{
