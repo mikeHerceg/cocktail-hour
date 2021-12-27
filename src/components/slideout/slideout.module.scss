@@ -1,0 +1,15 @@
+// Generated with util/create-component.js
+.slideout{
+    position: fixed;
+    right:-100%;
+    max-width: 800px;
+    padding:var(--spacer-medium);
+    background: var(--tint2);
+    transition:var(--transition);
+    box-shadow:var(--shadow);
+    &[data-open=true]{
+        right:0;
+        transition:var(--transition);
+
+    }
+}

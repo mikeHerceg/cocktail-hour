@@ -62,7 +62,7 @@ const DrinkCard = ({
             :
               <Button onClick={()=>{addDrink(item);}}>Save</Button>
           }
-          <Button onClick={()=>{emitEvent(item.idDrink);}}>Show details</Button>
+          <Button onClick={()=>{emitEvent(item.idDrink);}}>Details</Button>
         </div>
     </div>
   ); 

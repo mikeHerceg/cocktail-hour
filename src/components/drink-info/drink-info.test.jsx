@@ -3,9 +3,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import Sidebar from "../sidebar";
+import DrinkInfo from "../drink-info";
 
-describe("Sidebar", () => {
+describe("DrinkInfo", () => {
 
   beforeEach(() => {
     props = {
@@ -13,7 +13,7 @@ describe("Sidebar", () => {
     };
   });
 
-  const renderComponent = () => render(<Sidebar {...props} />);
+  const renderComponent = () => render(<DrinkInfo {...props} />);
 
   it("should render correctly", () => {
     // Arrange
@@ -22,7 +22,7 @@ describe("Sidebar", () => {
     const { getByTestId } = renderComponent();
 
     // Assert
-    const component = getByTestId("sidebar");
+    const component = getByTestId("drink-info");
     expect(component).toBeDefined();
   });
 });

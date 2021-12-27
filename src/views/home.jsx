@@ -1,63 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DrinkCard from '../components/drink-card';
-import Button from '../components/button';
+
+import DrinkInfo from '../components/drink-info/drink-info';
+import Slideout from '../components/slideout/slideout';
 //https://www.thecocktaildb.com/api.php
 const Home = () =>{
-    const [showIngredients, setShowIngredients] = useState(false);
     const [currentDrink, setCurrentDrink] = useState(false);
     const [drinks, setDrinks] = useState([]);
     const [liquorChoice, setLiquorChoice] = useState('vodka');
-    
+    const slideOutRef = useRef();
+
     function getDrinks(liquor){
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${liquor}`)
         .then(response => response.json())
-        .then(data=>{setDrinks(data.drinks);});  
-        setShowIngredients(false);
+        .then(data=>{setDrinks(data.drinks);});        
+        slideOutRef.current.closeSlide();
     }
     
     function showDetails(drinkId){
         //todo show ingredients for drink
         fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
         .then(response => response.json())
-        .then(data=>{setCurrentDrink(data.drinks[0]);});  
-        setShowIngredients(true);
-        
+        .then(data=>{setCurrentDrink(data.drinks[0]);})
+        .then(slideOutRef.current.openSlide());  
     }
 
     useEffect(()=>{
         getDrinks(liquorChoice);
     },[liquorChoice]);
-//look for strIngredient, strMeasure
-function findValueByPrefix(object, prefix) {
-    const array = new Array;
-    for (var property in object) {
-      if (object.hasOwnProperty && 
-         property.toString().startsWith(prefix)) {
-          array.push(object[property]);
-      }
-    }
-    return array.filter(item => 
-        item !== null | undefined | ''
-    );
-  }
 
-  function buildIngredientList(){
-    const ingredients = findValueByPrefix(currentDrink, 'strIngredient');
-    const amounts = findValueByPrefix(currentDrink, 'strMeasure');
-    if (ingredients.length !== amounts.length) return ingredients;
-    return ingredients.map((ingredient, index)=>{
-        return amounts[index]+ ' '+ingredient;
-    });
-  }
-    
-    const [currentDrinkIngredients, setCurrentDrinkIngredients ] = useState([]);
-    
-    useEffect(()=>{
-        //console.log(buildIngredientList());
-        setCurrentDrinkIngredients(
-            buildIngredientList()
-        );
-    },[currentDrink]);
+
 
 
     return(
@@ -87,26 +59,9 @@ function findValueByPrefix(object, prefix) {
             }
             </div>
         </div>
-        {showIngredients ?
-            <div className="sidebar-info">
-                <Button onClick={()=>setShowIngredients(!showIngredients)}>X</Button>
-                <h1>{currentDrink.strDrink}</h1>
-                <img width="100px" height="100px"src={currentDrink.strDrinkThumb} alt={`image of ${currentDrink.strDrink}`}/>
-                <p><b>Glass Type:</b> {currentDrink.strGlass}</p>
-                <p><b>Ingredients:</b></p> 
-                <ul>
-                    {
-                        currentDrinkIngredients.map(ingredient =>{
-                            if(!ingredient || ingredient === ' ') return null;
-                            return <li key={ingredient}>{ingredient}</li>;
-                        })
-                    }
-                </ul>
-
-                <p><b>Instructions:</b> {currentDrink.strInstructions}</p>
-            </div>
-        :null
-        }
+        <Slideout ref={slideOutRef}>
+            <DrinkInfo drink={currentDrink}/>
+        </Slideout>
         </div>
     );
 };
