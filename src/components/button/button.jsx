@@ -13,7 +13,9 @@ const Button = ({
   return (
     <button 
       data-testid="button" 
-      className={styles['button']}
+      className={
+        styles['button']
+      }
       onClick={onClick}
       >
         { props.children } 
