@@ -25,14 +25,13 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          <Link to="/my-drinks">
+          {/*<Link to="/my-drinks">
             My Drinks
           </Link>
+  */}
         </li>
       </ul>
-      {//
       <ThemeToggle/>
-      }
     </div>
     <div ref={navSpacerRef} className="navigation-spacer"></div>
     </>

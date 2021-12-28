@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DrinkCard from "../components/drink-card";
+import DrinkInfo from "../components/drink-info";
+import Slideout from "../components/Slideout";
 const MyDrinks = () => {
   const [myDrinks, setMyDrinks] = useState([]);
+  const slideOutRef = useRef();
 
   function getMyDrinks() {
     const storedDrinks = JSON.parse(localStorage.getItem("myDrinks"));
@@ -11,10 +14,11 @@ const MyDrinks = () => {
         getMyDrinks();
     },[localStorage.getItem("myDrinks")]);
 
+
   return (
+    <>
     <div className="container main-content">
-      <div className="row">
-        
+      
         {myDrinks.length > 0 ?
             myDrinks.map(item => {
           return (
@@ -26,7 +30,7 @@ const MyDrinks = () => {
         : 'no drinks saved!'
     }
       </div>
-    </div>
+</>
   );
 };
 export default MyDrinks;

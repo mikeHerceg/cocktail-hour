@@ -7,6 +7,10 @@
     background: var(--tint2);
     transition:var(--transition);
     box-shadow:var(--shadow);
+    top: 50%;
+    transform: translate(0,-50%);
+    height: 100vh;
+    z-index: 1;
     &[data-open=true]{
         right:0;
         transition:var(--transition-slow);

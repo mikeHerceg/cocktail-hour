@@ -1,2 +1,20 @@
 // Generated with util/create-component.js
 
+.drop-down{
+    display: flex;
+    align-items: baseline;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    label{
+        margin-right:var(--spacer);
+    }
+    select{
+        padding:var(--spacer);
+        border-radius: var(--rounded-border);
+        border:var(--border);
+        &:focus{
+            border:var(--border);
+            outline:none;
+        }
+    }
+}

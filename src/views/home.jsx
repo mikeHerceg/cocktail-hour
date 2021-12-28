@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import DrinkCard from '../components/drink-card';
-
+import { drinkOptions } from '../assets/drinkOptions.array';
 import DrinkInfo from '../components/drink-info/drink-info';
 import Slideout from '../components/slideout/slideout';
+import DropDown from '../components/drop-down/drop-down';
 //https://www.thecocktaildb.com/api.php
 const Home = () =>{
-    const [currentDrink, setCurrentDrink] = useState(false);
+    const [currentDrink, setCurrentDrink] = useState();
     const [drinks, setDrinks] = useState([]);
     const [liquorChoice, setLiquorChoice] = useState('vodka');
     const slideOutRef = useRef();
@@ -33,20 +34,14 @@ const Home = () =>{
 
 
     return(
-       <div className="d-flex">
+       <>
        <div className="container main-content">
-            <h1>Cocktail Hour!</h1>
-            <label>I Like to Drink</label>
-            <select value={liquorChoice} onChange={(e)=>setLiquorChoice(e.target.value)}>
-                <option value='l' disabled>Liquor</option>
-                <option value="vodka">Vodka</option>
-                <option value="gin">Gin</option>
-                <option value="whiskey">Whiskey</option>
-                <option value="bourbon">Bourbon</option>
-                <option value="tequila">Tequila</option>
-                <option value="rum">Rum</option>
-                <option value="bitters">Bitters</option>
-            </select>
+            <DropDown 
+                label="I Like to Drink" 
+                options={drinkOptions} 
+                defaultValue={liquorChoice}
+                emitValue={setLiquorChoice}/>
+
             <div className="row">
             {
                 drinks.map(item=>{
@@ -60,9 +55,11 @@ const Home = () =>{
             </div>
         </div>
         <Slideout ref={slideOutRef}>
-            <DrinkInfo drink={currentDrink}/>
+            {currentDrink &&
+                <DrinkInfo drink={currentDrink}/>
+            }
         </Slideout>
-        </div>
+        </>
     );
 };
 export default Home;

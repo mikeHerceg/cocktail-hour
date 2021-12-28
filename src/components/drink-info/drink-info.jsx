@@ -10,6 +10,7 @@ const DrinkInfo = ({
   drink,
   ...props
 }) => {
+
   //look for strIngredient, strMeasure
 function findValueByPrefix(object, prefix) {
   const array = new Array;
