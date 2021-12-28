@@ -36,23 +36,26 @@ const Home = () =>{
     return(
        <>
        <div className="container main-content">
+            <h1>Choose the liquor you like to drink</h1>
             <DropDown 
                 label="I Like to Drink" 
                 options={drinkOptions} 
                 defaultValue={liquorChoice}
-                emitValue={setLiquorChoice}/>
-
-            <div className="row">
-            {
-                drinks.map(item=>{
-                  return( 
-                    <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item.idDrink}>
-                      <DrinkCard item={item} emitEvent={showDetails}/>
-                    </div>
-                  );
-                })
+                emitValue={setLiquorChoice}
+            /> 
+            {drinks &&
+                <div className="row">
+                    {
+                        drinks.map(item=>{
+                        return( 
+                            <div className="col-lg-3 col-md-4 col-sm-6 mb-4" key={item.idDrink}>
+                            <DrinkCard item={item} emitEvent={showDetails}/>
+                            </div>
+                        );
+                        })
+                    }
+                </div>
             }
-            </div>
         </div>
         <Slideout ref={slideOutRef}>
             {currentDrink &&

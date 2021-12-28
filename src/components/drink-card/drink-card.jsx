@@ -1,6 +1,7 @@
 // Generated with util/create-component.js
 
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState, useMemo, useRef } from "react";
+import Toaster from '../toaster';
 import styles from "./drink-card.module.scss";
 import Button from "../button";
 
@@ -9,23 +10,26 @@ const DrinkCard = ({
   emitEvent
 }) => {
   const [isMyDrinks, setMyDrinks] = useState();
-
+  const [toasterContent, setToasterContent] = useState('toaster');
+  const toasterRef = useRef();
+  
   const storedDrinks = useMemo(()=>{
     const storedDrinks = JSON.parse(localStorage.getItem('myDrinks'));
     if( !storedDrinks) return [];
     return storedDrinks;
   },[localStorage.getItem('myDrinks')]);
 
-  function addDrink(drink){ 
+  async function addDrink(drink){ 
     let myDrinks = [];
     if(storedDrinks){
         myDrinks = storedDrinks;
     }
-    setMyDrinks(true);
     myDrinks.push(drink);
-    localStorage.setItem('myDrinks',JSON.stringify(myDrinks));  
+    await localStorage.setItem('myDrinks',JSON.stringify(myDrinks)); 
+    setMyDrinks(true); 
+    toasterRef.current.openToaster("drink has been saved to My Drinks");
   }
-  function removeDrink(drink){ 
+  async function removeDrink(drink){ 
     let myDrinks = [];
     if(storedDrinks){
         myDrinks = storedDrinks;
@@ -34,8 +38,9 @@ const DrinkCard = ({
     myDrinks = myDrinks.filter(drink=>{
       return drink['idDrink'] !== drinkId;
     });
+    await localStorage.setItem('myDrinks',JSON.stringify(myDrinks)); 
     setMyDrinks(false);
-    localStorage.setItem('myDrinks',JSON.stringify(myDrinks));  
+    toasterRef.current.openToaster("drink has been removed from My Drinks");
   }
   
 
@@ -50,7 +55,6 @@ const DrinkCard = ({
   useEffect(()=>{
     checkMyDrinks(item.idDrink);
   },[]);
-  
   return (
     <div data-testid="drink-card" className={styles['drink-card']} key={item.idDrink}>
         <img src={item.strDrinkThumb} alt={`image of ${item.strDrink}`}/>
@@ -64,7 +68,11 @@ const DrinkCard = ({
           }
           <Button onClick={()=>{emitEvent(item.idDrink);}}>Details</Button>
         </div>
+        <Toaster ref={toasterRef} success>
+          {toasterContent}
+        </Toaster>
     </div>
+
   ); 
 };
 

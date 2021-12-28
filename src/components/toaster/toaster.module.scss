@@ -1,0 +1,31 @@
+// Generated with util/create-component.js
+
+.toaster{
+    position: fixed;
+    top:var(--spacer-large);
+    transform: translateX(-50%);
+    left: 50%;
+    border:var(--border);
+    border-radius:var(--rounded-border);
+    color:var(--button-text-color);
+    background: var(--background-color);
+    padding:var(--spacer);
+    animation: fadeOut 1s ease-out 2s forwards ;
+    &[data-type="success"]{
+        background:var(--success);
+    }
+    &[data-type="warning"]{
+        background:var(--warning);
+    }
+    &[data-type="danger"]{
+        background:var(--danger);
+    }
+}
+@keyframes fadeOut {
+    0%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 0;
+    }
+}
