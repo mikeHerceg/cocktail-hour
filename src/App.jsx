@@ -1,5 +1,5 @@
 import "./main.scss";
-import React, { lazy, Suspense , createContext } from 'react';
+import React, { lazy, Suspense , createContext, useState, useMemo } from 'react';
 import {
   HashRouter as Router,
   Switch,
@@ -11,14 +11,22 @@ import Navigation from "./components/navigation/navigation";
 const Home = lazy(() => import('./views/home'));
 const MyDrinks = lazy(() => import('./views/my-drinks'));
 
-export const Store = createContext();
+export const GlobalContext = createContext({
+  globalState:{},
+  setGlobalState:()=>{}
+});
 
-const initialstate = {
-};
+
 
 export const App = () =>{
+  const initialstate = {
+    color:'red',
+  };
+  const [globalState, setGlobalState] = useState(initialstate);
+  const value = useMemo(()=>({ globalState, setGlobalState }));
+
   return(
-    <Store.Provider value={initialstate}>
+    <GlobalContext.Provider value={value}>
       <Router>   
         <Navigation/>
         <Suspense fallback={"loading..."}>
@@ -28,7 +36,7 @@ export const App = () =>{
           </Switch>   
         </Suspense>
       </Router>
-    </Store.Provider>
+    </GlobalContext.Provider>
   );
 };
 
