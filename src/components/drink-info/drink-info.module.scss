@@ -1,2 +1,20 @@
 // Generated with util/create-component.js
-
+.drink-info{
+    h1{
+        margin-bottom:var(--spacer-large);
+    }
+    .content{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        .image{
+            max-width: 300px;
+            box-shadow: var(--shadow);
+            border-radius:var(--rounded-border-small); 
+            margin-bottom:var(--spacer-large);
+        }
+        .info{
+            padding:0 var(--spacer-large);
+        }
+    }
+}

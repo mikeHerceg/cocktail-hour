@@ -43,19 +43,23 @@ function buildIngredientList(){
 
     <div data-testid="drink-info" className={styles['drink-info']}>
                 <h1>{drink.strDrink}</h1>
-                <img width="100px" height="100px"src={drink.strDrinkThumb} alt={`image of ${drink.strDrink}`}/>
-                <p><b>Glass Type:</b> {drink.strGlass}</p>
-                <p><b>Ingredients:</b></p> 
-                <ul>
-                    {
-                        drinkIngredients.map(ingredient =>{
-                            if(!ingredient || ingredient === ' ') return null;
-                            return <li key={ingredient}>{ingredient}</li>;
-                        })
-                    }
-                </ul>
-
-                <p><b>Instructions:</b> {drink.strInstructions}</p>
+                <div className={`${styles.content}`}> 
+                  <img className={`col-md-4 ${styles.image}`} src={drink.strDrinkThumb} alt={`image of ${drink.strDrink}`}/>
+                  <div className={`${styles.info} col-md-8`}>
+                    <p><b>Glass Type:</b> {drink.strGlass}</p>
+                    <p><b>Ingredients:</b></p> 
+                    <ul>
+                        {
+                            drinkIngredients.map(ingredient =>{
+                                if(!ingredient || ingredient === ' ') return null;
+                                return <li key={ingredient}>{ingredient}</li>;
+                            })
+                        }
+                    </ul>
+                    <p><b>Instructions:</b> {drink.strInstructions}</p>
+                  </div>
+                </div>
+                
     </div>
   ); 
 };
