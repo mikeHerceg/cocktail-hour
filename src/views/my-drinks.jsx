@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import DrinkCard from "../components/drink-card";
-import DrinkInfo from "../components/drink-info";
-import Slideout from "../components/Slideout";
+
 const MyDrinks = () => {
   const [myDrinks, setMyDrinks] = useState([]);
-  const slideOutRef = useRef();
 
   function getMyDrinks() {
     const storedDrinks = JSON.parse(localStorage.getItem("myDrinks"));

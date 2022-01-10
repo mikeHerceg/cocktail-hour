@@ -1,14 +1,12 @@
 // Generated with util/create-component.js
 
 import React, { useState } from "react";
-import PropTypes from "prop-types"; 
 import styles from "./toggle-button.module.scss";
 
 
 const ToggleButton = ({ 
   value,
   onClick,
-  ...props
 }) => {
 
   const [isTrue, setIsTrue] = useState(value);
@@ -26,10 +24,3 @@ const ToggleButton = ({
 };
 
 export default ToggleButton;
-
-ToggleButton.propTypes = {
-  //add Proptypes here
-};
-ToggleButton.defaultProps = {
-  //add defualt values
-};

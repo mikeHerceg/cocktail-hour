@@ -6,7 +6,6 @@ import styles from "./button.module.scss";
 
 const Button = ({ 
   onClick,
-  className,
   ...props
 }) => {
 

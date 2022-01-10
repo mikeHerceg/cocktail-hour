@@ -31,8 +31,6 @@ const Home = () =>{
     },[liquorChoice]);
 
 
-
-
     return(
        <>
        <div className="container main-content">

@@ -1,14 +1,12 @@
 // Generated with util/create-component.js
 
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types"; 
 import styles from "./drink-info.module.scss";
-import Button from '../../components/button';
+
 
 
 const DrinkInfo = ({ 
   drink,
-  ...props
 }) => {
 
   //look for strIngredient, strMeasure

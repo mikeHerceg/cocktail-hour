@@ -4,12 +4,11 @@ import React, { forwardRef, useImperativeHandle, useEffect, useState, useMemo } 
 import styles from "./toaster.module.scss";
 
 const Toaster = ({ 
-  children,
   ...props
 }, ref) => {
   
-  const [ isPresent, setIsPresent ] = useState(false);//change to fasle
-  const [ text, setText ] = useState(false);//change to fasle
+  const [ isPresent, setIsPresent ] = useState(false);
+  const [ text, setText ] = useState();
 
   useImperativeHandle(ref,()=>({
       openToaster:(text)=>{
@@ -47,10 +46,3 @@ const Toaster = ({
 };
 
 export default forwardRef(Toaster);
-
-Toaster.propTypes = {
-  //add Proptypes here
-};
-Toaster.defaultProps = {
-  //add defualt values
-};

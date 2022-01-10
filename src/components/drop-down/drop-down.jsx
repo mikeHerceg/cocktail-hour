@@ -10,7 +10,6 @@ const DropDown = ({
   defaultValue,
   emitValue,
   placeholderOption,
-  ...props
 }) => {
 
   const [value, setValue] = useState(placeholderOption ? '1' : defaultValue);
@@ -36,7 +35,4 @@ const DropDown = ({
 
 export default DropDown;
 
-DropDown.propTypes = {
-  //add Proptypes here
-};
 

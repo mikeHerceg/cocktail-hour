@@ -20,6 +20,9 @@
     &[data-type="danger"]{
         background:var(--danger);
     }
+    a{
+        color:var(--button-text-color) !important;
+    }
 }
 @keyframes fadeOut {
     0%{

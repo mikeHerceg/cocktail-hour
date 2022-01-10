@@ -4,13 +4,13 @@ import React, { useEffect, useState, useMemo, useRef } from "react";
 import Toaster from '../toaster';
 import styles from "./drink-card.module.scss";
 import Button from "../button";
+import { Link } from "react-router-dom";
 
 const DrinkCard = ({ 
   item,
   emitEvent
 }) => {
   const [isMyDrinks, setMyDrinks] = useState();
-  const [toasterContent, setToasterContent] = useState('toaster');
   const toasterRef = useRef();
   
   const storedDrinks = useMemo(()=>{
@@ -27,7 +27,7 @@ const DrinkCard = ({
     myDrinks.push(drink);
     await localStorage.setItem('myDrinks',JSON.stringify(myDrinks)); 
     setMyDrinks(true); 
-    toasterRef.current.openToaster("drink has been saved to My Drinks");
+    toasterRef.current.openToaster(()=><>drink has been saved to <Link to="/my-drinks">My Drinks</Link></>);
   }
   async function removeDrink(drink){ 
     let myDrinks = [];
@@ -40,7 +40,7 @@ const DrinkCard = ({
     });
     await localStorage.setItem('myDrinks',JSON.stringify(myDrinks)); 
     setMyDrinks(false);
-    toasterRef.current.openToaster("drink has been removed from My Drinks");
+    toasterRef.current.openToaster(()=><>drink has been removed to <Link to="/my-drinks">My Drinks</Link></>);
   }
   
 
@@ -68,9 +68,7 @@ const DrinkCard = ({
           }
           <Button onClick={()=>{emitEvent(item.idDrink);}}>Details</Button>
         </div>
-        <Toaster ref={toasterRef} success>
-          {toasterContent}
-        </Toaster>
+        <Toaster ref={toasterRef} success/>
     </div>
 
   ); 

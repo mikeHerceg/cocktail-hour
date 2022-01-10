@@ -5,7 +5,7 @@ import styles from "./theme-toggle.module.scss";
 import ToggleButton from "../toggle-button";
 
 
-const ThemeToggle = ({ ...props }) => {
+const ThemeToggle = () => {
   
   const [isLightTheme, setIsLightTheme] = useState(true); 
   
