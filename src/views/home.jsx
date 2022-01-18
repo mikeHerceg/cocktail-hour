@@ -4,6 +4,7 @@ import { drinkOptions } from '../assets/drinkOptions.array';
 import DrinkInfo from '../components/drink-info/drink-info';
 import Slideout from '../components/slideout/slideout';
 import DropDown from '../components/drop-down/drop-down';
+import { getDrinkDetails } from '../utils';
 //https://www.thecocktaildb.com/api.php
 const Home = () =>{
     const [currentDrink, setCurrentDrink] = useState();
@@ -19,10 +20,8 @@ const Home = () =>{
     }
     
     function showDetails(drinkId){
-        //todo show ingredients for drink
-        fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
-        .then(response => response.json())
-        .then(data=>{setCurrentDrink(data.drinks[0]);})
+        getDrinkDetails(drinkId)
+        .then(details =>setCurrentDrink(details))
         .then(slideOutRef.current.openSlide());  
     }
 

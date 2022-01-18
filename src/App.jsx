@@ -16,12 +16,9 @@ export const GlobalContext = createContext({
   setGlobalState:()=>{}
 });
 
-
-
 export const App = () =>{
-  const initialstate = {
-    color:'red',
-  };
+  const initialstate = {};
+
   const [globalState, setGlobalState] = useState(initialstate);
   const value = useMemo(()=>({ globalState, setGlobalState }));
 

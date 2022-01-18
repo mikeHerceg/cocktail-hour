@@ -25,10 +25,9 @@ const Navigation = () => {
           </Link>
         </li>
         <li>
-          {/*<Link to="/my-drinks">
+         <Link to="/my-drinks">
             My Drinks
           </Link>
-  */}
         </li>
       </ul>
       <ThemeToggle/>
